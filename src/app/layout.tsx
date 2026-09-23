@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'sonner';
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} ${oswald.variable} font-sans bg-background text-white min-h-screen flex flex-col`}>
         {/* Navbar component will be imported here later */}
+        <Navbar />
         <main className="flex-grow">
           {children}
         </main>
