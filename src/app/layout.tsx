@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
-import { Toaster } from 'sonner';
 import Navbar from "./components/Navbar";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "FitLog - Workout Library",
-  description: "Train with intent. Log every set.",
+  title: "Fitlog | Train with intent",
+  description: "A dark, no-nonsense gym companion.",
 };
 
 export default function RootLayout({
@@ -18,15 +14,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} ${oswald.variable} font-sans bg-background text-white min-h-screen flex flex-col`}>
-        {/* Navbar component will be imported here later */}
+    <html lang="en" className="scroll-smooth">
+      {/* 
+        min-h-screen and flex-col ensure the footer is always pushed 
+        to the bottom even if the page content is short.
+      */}
+      <body className="bg-[#131418] text-white min-h-screen flex flex-col antialiased">
         <Navbar />
+        
+        {/* Main content wrapper */}
         <main className="flex-grow">
           {children}
         </main>
-        {/* Footer component will be imported here later */}
-        <Toaster position="bottom-right" theme="dark" />
+        
+        <Footer />
       </body>
     </html>
   );
