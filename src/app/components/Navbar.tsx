@@ -11,7 +11,7 @@ export default function Navbar() {
   const [savedCount, setSavedCount] = useState(0);
 
   useEffect(() => {
-    // Function to check local storage and update numbers
+    
     const updateCounts = () => {
       const todaysPlan = JSON.parse(localStorage.getItem("todaysPlan") || "[]");
       const savedPlan = JSON.parse(localStorage.getItem("savedPlan") || "[]");
@@ -22,7 +22,7 @@ export default function Navbar() {
     // Run on initial load
     updateCounts();
 
-    // Listen for custom events when we add/remove items
+    
     window.addEventListener("planUpdated", updateCounts);
 
     return () => {
@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <nav className="w-full bg-[#0a0a0a] border-b border-neutral-900 px-6 md:px-12 py-4 flex items-center justify-between sticky top-0 z-50">
       
-      {/* Brand */}
+     
       <Link href="/" className="flex items-center gap-3">
         <Image 
           src="/logo.png" 
@@ -47,7 +47,7 @@ export default function Navbar() {
         </span>
       </Link>
 
-      {/* Center Links */}
+      
       <div className="flex items-center gap-6">
         <Link 
           href="/" 
@@ -67,7 +67,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Right side stats */}
+      
       <div className="flex items-center gap-5">
         <div className="flex items-center gap-2">
           <span className="text-neutral-300 text-[15px] font-medium">Plan</span>

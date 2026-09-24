@@ -7,7 +7,7 @@ export default function WorkoutCard(props: any) {
   const name = props.name || 'Unknown Workout';
   const image = props.image || "/banner.png";
   
-  // Directly targeting the exact key from your API output
+  
   const categoryArray = props.muscleGroups || [];
   
   const equipment = props.equipment || 'No equipment specified';
@@ -20,7 +20,7 @@ export default function WorkoutCard(props: any) {
       href={`/workout/${_id}`} 
       className="flex flex-col bg-[#1a1c23] rounded-2xl overflow-hidden hover:scale-[1.02] hover:ring-1 hover:ring-[#ccff00] transition-all duration-300"
     >
-      {/* Top: Workout Image */}
+     
       <div className="relative w-full aspect-[4/3] bg-neutral-800">
         <Image 
           src={image} 
@@ -31,10 +31,10 @@ export default function WorkoutCard(props: any) {
         />
       </div>
 
-      {/* Bottom: Details & Stats */}
+      
       <div className="flex flex-col flex-grow p-6">
         
-        {/* Category Pills mapped to muscleGroups */}
+        
         {categoryArray.length > 0 && (
           <div className="flex flex-wrap gap-2.5 mb-4">
             {categoryArray.map((cat: string, index: number) => (
@@ -48,7 +48,7 @@ export default function WorkoutCard(props: any) {
           </div>
         )}
 
-        {/* Title and Equipment */}
+        
         <h3 className="text-white font-oswald text-[22px] font-bold uppercase truncate">
           {name}
         </h3>
@@ -56,10 +56,10 @@ export default function WorkoutCard(props: any) {
           {equipment}
         </p>
 
-        {/* Separator Line */}
+       
         <div className="w-full h-px bg-neutral-800/80 my-5" />
 
-        {/* Stats Row */}
+      
         <div className="flex items-center gap-5 mt-auto text-neutral-400 text-[13px] font-medium">
           <div className="flex items-center gap-2">
             <Clock className="w-[14px] h-[14px]" />

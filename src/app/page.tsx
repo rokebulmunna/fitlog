@@ -1,7 +1,7 @@
 import Image from "next/image";
 import WorkoutCard from "./components/WorkoutCard";
 
-// Fetch data from the provided Fitlog API
+
 async function getWorkouts() {
   try {
     const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
@@ -25,10 +25,10 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-[#131418] text-white flex flex-col items-center">
       
-      {/* HERO SECTION */}
+      
       <section className="relative flex flex-col md:flex-row items-center justify-between px-8 md:px-12 py-16 max-w-7xl mx-auto w-full">
         
-        {/* Left Side: Typography and CTA */}
+        
         <div className="flex-1 flex flex-col items-start z-10 md:pr-10">
           <p className="text-[#ccff00] font-bold tracking-[0.15em] text-sm uppercase mb-4">
             Workout Library
@@ -50,7 +50,7 @@ export default async function Home() {
           </a>
         </div>
         
-        {/* Right Side: Banner Image */}
+        
         <div className="flex-1 w-full mt-12 md:mt-0 relative min-h-[400px] md:min-h-[600px] flex items-center justify-end">
            <Image 
              src="/banner.png" 
@@ -62,14 +62,14 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* LIBRARY SECTION */}
+      
       <section id="library" className="px-8 md:px-12 py-20 max-w-7xl mx-auto w-full">
         <div className="mb-10">
           <h2 className="text-4xl md:text-5xl font-bold font-oswald uppercase">The Library</h2>
           <p className="text-neutral-400 mt-2 text-lg">Twelve lifts covering every major muscle group.</p>
         </div>
         
-        {/* Responsive Grid mapping over API data */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {workouts && workouts.length > 0 ? (
             workouts.map((workout: any, index: number) => (

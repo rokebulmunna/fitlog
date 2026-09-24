@@ -1,7 +1,7 @@
 import Image from "next/image";
 import WorkoutActions from "@/app/components/WorkoutActions";
 
-// Fetch single workout data based on the dynamic ID
+
 async function getWorkoutDetail(id: string) {
   try {
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, {
@@ -37,7 +37,7 @@ export default async function WorkoutDetail({
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         
-        {/* Left Column: Image */}
+        
         <div className="relative w-full aspect-square md:aspect-[4/5] lg:aspect-square bg-[#1a1c23] rounded-3xl overflow-hidden">
           <Image 
             src={workout.image || "/banner.png"} 
@@ -49,7 +49,7 @@ export default async function WorkoutDetail({
           />
         </div>
 
-        {/* Right Column: Content */}
+        
         <div className="flex flex-col">
           <h1 className="text-4xl md:text-[44px] font-oswald font-bold uppercase leading-tight mb-4 text-white">
             {workout.name}
@@ -97,7 +97,7 @@ export default async function WorkoutDetail({
             </div>
           )}
 
-          {/* Interactive Client Component Buttons */}
+          
           <WorkoutActions workout={workout} />
 
         </div>
