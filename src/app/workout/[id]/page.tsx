@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CalendarPlus, Bookmark } from "lucide-react";
+import WorkoutActions from "@/app/components/WorkoutActions";
 
 // Fetch single workout data based on the dynamic ID
 async function getWorkoutDetail(id: string) {
@@ -7,7 +7,6 @@ async function getWorkoutDetail(id: string) {
     const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, {
       cache: "no-store"
     });
-    
     if (!res.ok) return null;
     return res.json();
   } catch (error) {
@@ -16,13 +15,11 @@ async function getWorkoutDetail(id: string) {
   }
 }
 
-// In Next.js 15+, params is a Promise that must be awaited
 export default async function WorkoutDetail({ 
   params 
 }: { 
   params: Promise<{ id: string }> 
 }) {
-  // Await the params to successfully extract the ID
   const resolvedParams = await params;
   const workout = await getWorkoutDetail(resolvedParams.id);
 
@@ -54,8 +51,6 @@ export default async function WorkoutDetail({
 
         {/* Right Column: Content */}
         <div className="flex flex-col">
-          
-          {/* Header Section */}
           <h1 className="text-4xl md:text-[44px] font-oswald font-bold uppercase leading-tight mb-4 text-white">
             {workout.name}
           </h1>
@@ -63,7 +58,6 @@ export default async function WorkoutDetail({
             {workout.description}
           </p>
 
-          {/* Category Pills */}
           {categoryArray.length > 0 && (
             <div className="flex flex-wrap gap-2.5 mb-8">
               {categoryArray.map((cat: string, index: number) => (
@@ -77,7 +71,6 @@ export default async function WorkoutDetail({
             </div>
           )}
 
-          {/* Stats Container */}
           <div className="bg-[#15171d] rounded-2xl p-6 md:p-8 mb-10 flex flex-col gap-5 border border-neutral-800/50">
             <StatRow label="EQUIPMENT" value={workout.equipment} />
             <StatRow label="DIFFICULTY" value={workout.difficulty} />
@@ -88,7 +81,6 @@ export default async function WorkoutDetail({
             <StatRow label="RATING" value={workout.rating} />
           </div>
 
-          {/* Instructions Section */}
           {workout.instructions && workout.instructions.length > 0 && (
             <div className="mb-10">
               <h3 className="text-white font-bold text-sm tracking-[0.15em] uppercase mb-5">
@@ -105,17 +97,8 @@ export default async function WorkoutDetail({
             </div>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
-            <button className="flex items-center gap-2 bg-[#ccff00] text-black px-6 py-3.5 rounded-[8px] text-[13px] font-bold tracking-wide hover:bg-[#b3e600] transition-colors">
-              <CalendarPlus className="w-4 h-4" />
-              Add to today's plan
-            </button>
-            <button className="flex items-center gap-2 bg-transparent border border-neutral-800 text-neutral-400 hover:text-white hover:border-neutral-600 px-6 py-3.5 rounded-[8px] text-[13px] font-medium transition-all">
-              <Bookmark className="w-4 h-4" />
-              Save for later
-            </button>
-          </div>
+          {/* Interactive Client Component Buttons */}
+          <WorkoutActions workout={workout} />
 
         </div>
       </div>
@@ -125,15 +108,10 @@ export default async function WorkoutDetail({
 
 function StatRow({ label, value }: { label: string; value: string | number }) {
   if (!value) return null;
-  
   return (
     <div className="flex items-center justify-between">
-      <span className="text-neutral-500 text-xs font-bold tracking-widest uppercase">
-        {label}
-      </span>
-      <span className="text-neutral-200 text-sm font-medium text-right">
-        {value}
-      </span>
+      <span className="text-neutral-500 text-xs font-bold tracking-widest uppercase">{label}</span>
+      <span className="text-neutral-200 text-sm font-medium text-right">{value}</span>
     </div>
   );
 }
